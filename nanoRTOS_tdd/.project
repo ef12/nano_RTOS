@@ -3,6 +3,7 @@
 	<name>nanoRTOS_tdd</name>
 	<comment></comment>
 	<projects>
+		<project>nanoRTOS</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
