@@ -110,12 +110,9 @@ int name##_out(name##_t* self, void* value)\
     if (NULL == self)/* Check if queue was initiates*/\
         {return nOS_QUEUE_NULL_POINTER;} /* Return error code */\
     if (NULL == self->values)/* Check if queue was initiates*/\
-        return nOS_QUEUE_ARRAY_NULL_POINTER; /* Return error code */\
+        {return nOS_QUEUE_ARRAY_NULL_POINTER;} /* Return error code */\
     if (self->count <= 0)\
-    {\
-        self->count = 0;\
-        return nOS_QUEUE_EMPTY;\
-    }\
+        {return nOS_QUEUE_EMPTY;}\
     *((T*)value) = self->values[self->outdex++];\
     self->count--;\
     if (self->outdex >= self->capacity)\

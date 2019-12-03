@@ -54,18 +54,20 @@ TEST_GROUP(nanoRTOS)
  * @brief Queue one task per priority and check that all the callback are
  * called by the scheduler
  */
-TEST(nanoRTOS, test_nOS_task_in_esch_priority_enquue_and_schedule)
+TEST(nanoRTOS, test_nOS_task_in_each_priority_enquue_and_schedule)
 {
-    UT_PRINT("test_nOS_task_in_esch_priority_enquue_and_schedule");
-    nOS_task_enqueue (1, test_task1, 1);
-    nOS_task_enqueue (2, test_task2, 2);
-    nOS_task_enqueue (3, test_task3, 3);
-    nOS_task_enqueue (4, test_task4, 4);
-    nOS_task_enqueue (5, test_task5, 5);
-    nOS_task_enqueue (6, test_task6, 6);
-    nOS_task_enqueue (7, test_task7, 7);
-    nOS_task_enqueue (8, test_task8, 8);
-    nOS_schedule ();
+    UT_PRINT("test_nOS_task_in_each_priority_enquue_and_schedule");
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (1, test_task1, 1));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (2, test_task2, 2));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (3, test_task3, 3));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (4, test_task4, 4));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (5, test_task5, 5));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (6, test_task6, 6));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (7, test_task7, 7));
+    CHECK_EQUAL(nOS_OK, nOS_task_enqueue (8, test_task8, 8));
+
+    CHECK_EQUAL(nOS_OK, nOS_schedule ());
+
     CHECK_EQUAL(1, task_counters.task1);
     CHECK_EQUAL(1, task_counters.task2);
     CHECK_EQUAL(1, task_counters.task3);

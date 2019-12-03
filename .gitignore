@@ -61,6 +61,6 @@ nanoRTOS/.settings/
 nanoRTOS_tdd/.settings/
 nanoRTOS/Debug/
 nanoRTOS/Release/
-nanoRTOS_tdd/Debug
+nanoRTOS_tdd/Debug/
 nanoRTOS_tdd/Release/
 nanoRTOS/rtf/

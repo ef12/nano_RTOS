@@ -8,8 +8,11 @@
 #ifndef NANORTOS_H_
 #define NANORTOS_H_
 
-#include "stdint.h"
+#include <stdint.h>
+#include <limits.h>
+
 #include "nanoConfig.h"
+
 /**
  * @brief nOS errors for the nanoRTOS
  */
@@ -37,6 +40,17 @@ typedef struct
 } nOS_task_t;
 
 /**
+ * A structure to hold all the private variables of the module
+ */
+typedef struct
+{
+    uint8_t current_prio_;    // The current running priority of the task
+    uint8_t read_queue_flags; // A variable to indicate which queue needs to be scheduled
+} nOS_public_t;
+
+extern nOS_public_t nOS_public;
+extern uint8_t const nOS_log2_lkup_table[UCHAR_MAX + 1];
+/**
  * @brief nOS_start will start the RTOS by initialising the tasks queues
  * The function shall be called prior to use of the nanoRTOS.
  * @return error code
@@ -50,13 +64,15 @@ nOS_err_t nOS_start (void);
  * @return nOS_err_t
  * @note This function invokes the scheduler.
  */
-nOS_err_t nOS_task_enqueue (uint8_t prio, nOS_task_callback_t callback, uint8_t event);
+nOS_err_t nOS_task_enqueue (uint8_t prio, nOS_task_callback_t callback,
+                            uint8_t event);
 
+#ifdef TDD_BUILD
 /**
  * @brief A function to dequeue all the priority task queues
  * @return nOS_err_t
  */
 nOS_err_t nOS_schedule (void);
-
+#endif
 
 #endif /* NANORTOS_H_ */

@@ -19,7 +19,16 @@
 
 #define nOS_INTERRUPTS_LOCK()   //__disable_irq()
 #define nOS_INTERRUPTS_UNLOCK() //__enable_irq()
-
+/**
+ * @brief nOS_STARTUP() macro will be called prior to RTOS operation.
+ * user needs to supply with a prototype here and implementation in application code
+ */
+#define nOS_STARTUP()           //void startup(void)
+/**
+ * @brief nOS_IDLE macro will be called when all the queues are empty (background process).
+ * user needs to supply with a prototype here and implementation in application code
+ */
+#define nOS_IDLE()           //void idle(void)
 /**
  * @brief A macro to wrap a code section with interrupts disable and enable
  */
